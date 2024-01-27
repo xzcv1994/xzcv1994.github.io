@@ -49,6 +49,7 @@ layout: page
           <span class="text-muted small font-weight-light">
             {% if sub_categories_size > 0 %}
               {{ sub_categories_size }}
+            <!-- Categories 페이지 맨윗목차 categories 개수 category 개수가 1이상이면 categories, 1개이면 category로 표현 -->
               {% if sub_categories_size > 1 %}
                 {{
                   site.data.locales[lang].categories.category_measure.plural
