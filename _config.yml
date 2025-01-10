@@ -200,4 +200,6 @@ jekyll-archives:
 main:
   name: 양승빈
 
+plugins:
+  - jekyll-sitemap
 
