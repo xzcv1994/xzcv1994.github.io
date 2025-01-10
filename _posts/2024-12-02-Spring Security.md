@@ -1,38 +1,41 @@
 ---
-title: 기술/용어/이슈
+title: Spring Security
 author: cotes
-date: 2024-01-25 11:39:00 +0800
-categories: [Posts, 기술/용어/이슈]
+date: 2024-12-02 11:39:00 +0800
+categories: [Spring, Spring Security]
 tags: [typography]
 pin: true
 math: true
 mermaid: true
 ---
-## **컴파일**
-{: .mt-0 .mb-2 }
-소스코드를 기계어나 중간 언어로 변환하는 과정
-컴파일러라고 불리는 도구를 사용하여 소스코드를 기계어나 중간 언어로 번역
-컴파일러는 소스 코드의 구문 오류를 찾아내고 코드를 최적화하여 실행가능한 형태로 만듬
-컴파일 단계에서 생성된 실행 파일은 컴퓨터에서 직접 실행가능하다.
+Spring Security는 인증 및 권한 기능, 보호 기능을 손쉽게 추가할 수 있는 Spring의 Framework이다.
 
-## **빌드**
+## **사용 이유**
 {: .mt-5 .mb-2 }
-빌드는 프로그램 개발 과정에서 여러 단계를 거쳐 소프트웨어를 완성하는 과정
+Spring 생태계에서 보안에 필요한 기능들을 제공하기 때문
+Spring Security는 Spring이라는 프레임 워크 안에서 활용하기 적합한 구조로 설계되어 있어, 보안 기능을 추가할 때 활용하기 좋다.
 
-## **스트림 프로세싱(= 이벤트 스트림 프로세싱, ESP)**
-{: .mt-5 .mb-2 }
-스트림 프로세싱은 스트리밍 데이터가 레코드나 정의된 단위에 따라 순차적으로 처리되는것을 의미한다.
-스트림 프로세싱과 일괄처리를 상호 보완적으로 사용하는 경우도 있다.
-금융거래, 시장, 통화 상태 모니터링, 보안 탐지나 시스템 실시간 분석과 같은 스트리밍 분석 또는 실시간 분석에 사용되는 기술이다.
+프레임워크를 사용하지 않고 코드를 직접 작성할 경우 Spring에서 추구하는 IoC/DI 패턴과 같은 확장 패턴을 염두해서 인증/인가 부분을 직접 개발해야하는데 이는 쉽지 않기 때문에
+Spring Security에서 제공하는 기능들을 활용하여 개발 작업 효율을 높일 수 있다.
 
-### **특징**
+## **아키텍쳐**
+![Desktop View](/assets/img/postImage/archi.png){: width="972" height="589"}
+이미지 출처 : [https://www.elancer.co.kr/blog/detail/235?seq=235](https://www.elancer.co.kr/blog/detail/235?seq=235)
+
+### **Spring Security Filter**
+![Desktop View](/assets/img/postImage/securityFilter.png){: width="420" height="589" .left}
+![Desktop View](/assets/img/postImage/securityfilter1.png){: width="420" height="589" .left} 
 {: .mt-2 .mb-1}
--연속되는 실시간 데이터 처리를위한 기술  
--연속되는 실시간 데이터를 처리하기 때문에 빠르고 효율적인 데이터 활용이 가능.  
--스트림 프로세싱은 빅데이터의 특징인 5V중 속도(Velocity)를 단축시키는 것과 밀접한 관련이 있다.  
--스트리밍 데이터를 활용하면 처리 속도가 빨라져 데이터 공유와 분석에 이점이 있다. 스트리밍 데이터 활용은 실시간 대응이 중요한 분야에서 비즈니스 경쟁력에 중요한 영향을 미치기때문에 스트림 프로세싱이 더욱더 중요하다.  
--스트리밍 데이터는 복수의 데이터 소스로부터 연속적으로 생성되는 데이터 레코드로 대부분 KB 단위 크기이다.  
--데이터가 연속해서 계속 흘러가기 때문에 처리할 수 있는 기회가 한정적이고 처리할 수 없는 데이터는 버려질 수도 있다.
+Spring Boot Application은 Tomcat이라는 Servlet Container 위에서 동작하고 Client 요청이 오면 Servlet Container의 Filter들을 통과해서 Controller로 전달한다.
+
+### **Spring Security Filter 동작원리**
+![Desktop View](/assets/img/postImage/securityfilter2.png){: width="50%" height="589" }
+![Desktop View](/assets/img/postImage/securityfilter3.png){: width="50%" height="589" }
+![Desktop View](/assets/img/postImage/securityfilter4.png){: width="50%" height="589" }
+
+Spring Security는 Servlet Container에 존재하는 FilterChain에 DelegatingFilter를 등록하여 모든 요청을 가로챈다.
+가로챈 요청은 Security FilterChain에서 처리 후 상황에 따라 거부, 리디렉션, 서블릿으로 요청을 전달한다.
+springSecurityFilterChain은 애플리케이션의 url을 보호하고, username/password를 검증하고, 로그인 폼으로 리다이렉팅하는 등등의 일을 담당한다.)
 
 ##### **이벤트 처리 보장** : 분산 데이터 파이프라인에서 데이터를 전달하는 방법 3가지 방법이 있다
 {: .mt-4 .mb-0}
@@ -219,7 +222,7 @@ Praesent maximus aliquam sapien. Sed vel neque in dolor pulvinar auctor. Maecena
 
 ### Float to right
 
-![Desktop View](/posts/20190808/mockup.png){: width="972" height="589" .w-50 .right}
+![Desktop View](/assets/img/postImage/archi.png){: width="972" height="589" .w-50 .right}
 Praesent maximus aliquam sapien. Sed vel neque in dolor pulvinar auctor. Maecenas pharetra, sem sit amet interdum posuere, tellus lacus eleifend magna, ac lobortis felis ipsum id sapien. Proin ornare rutrum metus, ac convallis diam volutpat sit amet. Phasellus volutpat, elit sit amet tincidunt mollis, felis mi scelerisque mauris, ut facilisis leo magna accumsan sapien. In rutrum vehicula nisl eget tempor. Nullam maximus ullamcorper libero non maximus. Integer ultricies velit id convallis varius. Praesent eu nisl eu urna finibus ultrices id nec ex. Mauris ac mattis quam. Fusce aliquam est nec sapien bibendum, vitae malesuada ligula condimentum.
 
 ### Dark/Light mode & Shadow
