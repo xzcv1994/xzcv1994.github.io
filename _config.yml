@@ -202,3 +202,5 @@ main:
 
 plugins:
   - jekyll-sitemap
+
+lqip: data:image/jpeg;base64
