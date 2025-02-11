@@ -26,7 +26,7 @@ Spring Security에서 제공하는 기능들을 활용하여 개발 작업 효�
 ![Desktop View](/assets/img/postImage/securityFilter.png)
 Spring Boot Application은 Tomcat이라는 Servlet Container 위에서 동작하고 Client 요청이 오면 Servlet Container의 Filter들을 통과해서 Controller로 전달한다.
 
-![Desktop View](/assets/img/postImage/securityfilter4.png)
+![Desktop View](/assets/img/postImage/securityFilter4.png)
 Spring Security는 Servlet Container에 존재하는 FilterChain에 DelegatingFilter를 등록하여 모든 요청을 가로챈다.
 가로챈 요청은 Security FilterChain에서 처리 후 상황에 따라 거부, 리디렉션, 서블릿으로 요청을 전달한다.
 springSecurityFilterChain은 애플리케이션의 url을 보호하고, username/password를 검증하고, 로그인 폼으로 리다이렉팅하는 등등의 일을 담당한다.)
@@ -35,9 +35,9 @@ springSecurityFilterChain은 애플리케이션의 url을 보호하고, username
 
 
 ### **Spring Security Filter 동작원리**
-![Desktop View](/assets/img/postImage/securityfilter2.png){: width="50%" height="589" }
-![Desktop View](/assets/img/postImage/securityfilter3.png){: width="50%" height="589" }
-![Desktop View](/assets/img/postImage/securityfilter4.png){: width="50%" height="589" }
+![Desktop View](/assets/img/postImage/securityFilter2.png){: width="50%" height="589" }
+![Desktop View](/assets/img/postImage/securityFilter3.png){: width="50%" height="589" }
+![Desktop View](/assets/img/postImage/securityFilter4.png){: width="50%" height="589" }
 
 
 ##### **이벤트 처리 보장** : 분산 데이터 파이프라인에서 데이터를 전달하는 방법 3가지 방법이 있다
