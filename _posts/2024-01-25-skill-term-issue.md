@@ -1,8 +1,8 @@
 ---
-title: 기술/용어/이슈
+title: 기술/용어
 author: cotes
 date: 2024-01-25 11:39:00 +0800
-categories: [Posts, 기술/용어/이슈]
+categories: [ETC, 기술/용어]
 tags: [typography]
 pin: true
 math: true
