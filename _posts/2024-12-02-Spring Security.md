@@ -11,7 +11,6 @@ mermaid: true
 Spring Security는 인증 및 권한 기능, 보호 기능을 손쉽게 추가할 수 있는 Spring의 Framework이다.
 
 ## **사용 이유**
-{: .mt-5 .mb-2 }
 Spring 생태계에서 보안에 필요한 기능들을 제공하기 때문
 Spring Security는 Spring이라는 프레임 워크 안에서 활용하기 적합한 구조로 설계되어 있어, 보안 기능을 추가할 때 활용하기 좋다.
 
@@ -19,8 +18,8 @@ Spring Security는 Spring이라는 프레임 워크 안에서 활용하기 적�
 Spring Security에서 제공하는 기능들을 활용하여 개발 작업 효율을 높일 수 있다.
 
 ## **아키텍쳐**
-![Desktop View](/assets/img/postImage/archi.png){: width="972" height="589"}
-이미지 출처 : [https://www.elancer.co.kr/blog/detail/235?seq=235](https://www.elancer.co.kr/blog/detail/235?seq=235)
+![Desktop View](/assets/img/postImage/archi.png)
+<!-- 이미지 출처 : [https://www.elancer.co.kr/blog/detail/235?seq=235](https://www.elancer.co.kr/blog/detail/235?seq=235) -->
 
 ### **Spring Security Filter**
 ![Desktop View](/assets/img/postImage/securityFilter.png)
@@ -189,7 +188,7 @@ fi;
 
 ## Mathematics
 
-The mathematics powered by [**MathJax**](https://www.mathjax.org/):
+<!-- The mathematics powered by [**MathJax**](https://www.mathjax.org/): -->
 
 $$ \sum_{n=1}^\infty 1/n^2 = \frac{\pi^2}{6} $$
 
