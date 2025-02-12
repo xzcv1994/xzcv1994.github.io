@@ -25,24 +25,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Git Repository 코드 GitHub Pages 실행 환경으로 복사
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      # GitHub Pages 설정
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
 
+      # GitHub Actions 실행 환경에서 Ruby를 설치하고 설정
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2
           bundler-cache: true
 
+      # 이전 빌드된 폴더 삭제
       - name: Clean Previous Build
         run: rm -rf _site
 
+      # 프로젝트 빌드 및 빌드 경로 설정, jekyll 자동 실핼 금지 설정
       - name: Build site
         run: |
           bundle exec jekyll b -d "_site${{ steps.pages.outputs.base_path }}"
@@ -62,10 +67,15 @@ jobs:
           path: "_site${{ steps.pages.outputs.base_path }}"
 
   deploy:
+    # 배포 환경 설정
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
+    # 실행 환경 설정
     runs-on: ubuntu-latest
+
+    # build job이 완료되어야 실행
     needs: build
     steps:
       - name: Deploy to GitHub Pages
