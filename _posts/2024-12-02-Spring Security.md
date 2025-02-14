@@ -1,6 +1,6 @@
 ---
 title: Spring Security
-author: cotes
+author: seungbin
 date: 2024-12-02 11:39:00 +0800
 categories: [Spring, Spring Security]
 tags: [typography]

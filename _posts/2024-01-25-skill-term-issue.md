@@ -1,6 +1,6 @@
 ---
 title: 기술/용어
-author: cotes
+author: seungbin
 date: 2024-01-25 11:39:00 +0800
 categories: [ETC, 기술/용어]
 tags: [typography]

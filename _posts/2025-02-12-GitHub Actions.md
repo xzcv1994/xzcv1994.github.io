@@ -1,6 +1,6 @@
 ---
 title: GitHub Actions
-author: cotes
+author: seungbin
 date: 2025-02-12 00:00
 categories: [DEVOPS, CI/CD]
 tags: [devops]
@@ -10,13 +10,15 @@ mermaid: true
 ---
 GitHub에서 제공하는 빌드, 테스트, 배포 파이프 라인을 자동화 할 수 있는 CI/CD 플랫폼
 
-# **구성 요소**
-#### **WorkFlow**
-{: .mt-0 .mb-2}
+## **구성 요소**
+{: .mt-5 .mb-2}
+
+##### **WorkFlow**
+{: .mt-4 .mb-2}
 GitHub Actions의 가장 상위 개념으로 자동화 할 작업 과정을 명시해놓은것이다.
 yaml 파일로 작성하고 GitHub Repository의 .github/workflows 폴더 하위에 저장된다.
 
-##### **문법**
+**문법**
 {: .mt-0 .mb-0}
 - name : workflow의 이름을 설정한다.(생략 시 파일 경로가 워크플로우 이름으로 사용된다.)
 - on : workflow의 실행 조건을 설정한다.
@@ -51,8 +53,8 @@ WorkFlow를 Trigger하는 특정 활동이나 규칙을 의미한다.
 - 특정 시간대에 반복
 - Webhook을 사용해 외부 이벤트를 통해 실행한다.
 
-# **특징**
-{: .mt-0 .mb-2}
+## **특징**
+{: .mt-5 .mb-2}
 - GitHub Actions의 각 job은 서로 독립적인 환경에서 실행된다.
   - build, deploy 작업이 두개가 존재한다면 build에서 만든 _site 폴더는 deploy 작업에서는 접근할 수 없다.
   - 예를 들어 build, deploy 단계가 존재하고 build 단계에서 _site에 결과물이 저장된다면 그것을 artifact 개념을 사용하여 파일을 저장하고 deploy 단계에서 다운로드 해서 사용한다.
