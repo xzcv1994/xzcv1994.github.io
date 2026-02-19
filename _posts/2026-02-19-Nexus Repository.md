@@ -1,7 +1,7 @@
 ---
 title: Nexus Repository
 author: seungbin
-date: 2026-02-19 12:49
+date: 2026-02-19 00:00
 categories: [DEVOPS, CI/CD]
 tags: [devops]
 pin: true
