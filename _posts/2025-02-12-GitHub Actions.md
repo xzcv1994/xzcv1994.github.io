@@ -31,7 +31,7 @@ yaml 파일로 작성하고 GitHub Repository의 .github/workflows 폴더 하위
 - jobs : 개별적인 작업 단위를 정의 한다.
   - runs-on : 실행 환경을 지정하는 설정
   - needs : 특정 작업이 끝난 후에만 현재 작업이 실행되도록 설정할 수 있다, needs에 명시된 작업이 성공적으로 완료되지 않으면 현재 작업은 실행되지 않는다.
-  - steps : step들을 정의한다.
+  - steps : step들을 정의한다. Github Actions에는 직접 명령어를 실행하는 종류와 이미 만들어진 Action을 가져다 쓰는 종류 두가지가 존재한다.
     - name : step의 이름을 설정
     - uses : GitHub Actions에서 특정 기능을 수행하는 공식 또는 커스텀 액션을 가져와서 실행할 수 있도록 하는 설정
       - 액션이란 재사용 가능한 작업 단위로, GitHub Actions 마켓플레이스에서 제공하는 공식 액션이나 커스텀 액션을 불러와 실행할 수 있다.
