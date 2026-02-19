@@ -1,7 +1,7 @@
 ---
 title: Nexus Repository
 author: seungbin
-date: 2026-0-12 00:00
+date: "{{ 'now' | date: '%Y-%m-%d %H:%M:%S %z' }}"
 categories: [DEVOPS, CI/CD]
 tags: [devops]
 pin: true
@@ -58,4 +58,3 @@ WorkFlow를 Trigger하는 특정 활동이나 규칙을 의미한다.
 - GitHub Actions의 각 job은 서로 독립적인 환경에서 실행된다.
   - build, deploy 작업이 두개가 존재한다면 build에서 만든 _site 폴더는 deploy 작업에서는 접근할 수 없다.
   - 예를 들어 build, deploy 단계가 존재하고 build 단계에서 _site에 결과물이 저장된다면 그것을 artifact 개념을 사용하여 파일을 저장하고 deploy 단계에서 다운로드 해서 사용한다.
-
