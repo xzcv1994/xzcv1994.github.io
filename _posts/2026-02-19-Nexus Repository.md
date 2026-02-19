@@ -8,11 +8,20 @@ pin: true
 math: true
 mermaid: true
 ---
-### Nexus Repository
+Nexus Repository는 Maven 생태계에서 널리 사용되는 무료 Repository Manager이며, 사설 Repository로도 활용할 수 있다.
 
-Maven에서 사용할 수 있는 가장 널리 사용되는 무료 Repository로, 사설 Repository로도 활용할 수 있으며 팀 내 코드 공유에도 사용할 수 있다.
+## **Nexus Repository란?**
+{: .mt-5 .mb-2}
+Nexus Repository는 외부 오픈소스 아티팩트와 내부 빌드 산출물을 한 곳에서 관리할 수 있도록 도와주는 저장소 관리 솔루션이다.
 
-### 저장소의 종류
+## **핵심 특징**
+{: .mt-5 .mb-2}
+- Maven 환경에서 널리 사용되는 Repository Manager다.
+- 사설 Repository로 구성해 팀 단위 코드/아티팩트 공유가 가능하다.
+- 외부 의존성 캐싱과 내부 산출물 배포를 동시에 지원한다.
+
+## **저장소의 종류**
+{: .mt-5 .mb-2}
 
 - **Proxy 저장소**
   
@@ -29,3 +38,9 @@ Maven에서 사용할 수 있는 가장 널리 사용되는 무료 Repository로
 - **Group 저장소**
   
   여러 Proxy/Hosted 저장소를 논리적으로 그룹화하여 의존성 조회 시 우선순위에 따라 순차적으로 검색한다.
+
+## **활용 포인트**
+{: .mt-5 .mb-2}
+- 외부 저장소 장애나 네트워크 이슈가 있어도 캐시된 의존성으로 빌드 안정성을 높일 수 있다.
+- 사내 라이브러리 배포/버전 관리를 표준화해 재사용성과 추적성을 높일 수 있다.
+- CI/CD 파이프라인과 연계해 아티팩트 저장소를 중앙화할 수 있다.
