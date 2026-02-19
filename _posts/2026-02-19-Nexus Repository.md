@@ -1,7 +1,7 @@
 ---
 title: Nexus Repository
 author: seungbin
-date: "{{ 'now' | date: '%Y-%m-%d %H:%M:%S %z' }}"
+date: 2026-02-19 12:49
 categories: [DEVOPS, CI/CD]
 tags: [devops]
 pin: true
