@@ -183,6 +183,58 @@ flowchart LR
 즉, "Controller Service를 LoadBalancer로 노출한다"는 말은
 "Ingress Controller를 외부에서 접근 가능한 관문으로 만든다"는 뜻이다.
 
+## **Ingress Controller 설치: URL apply vs 직접 YAML vs Helm**
+{: .mt-5 .mb-2}
+결론부터 보면, `kubectl` URL 방식과 직접 YAML apply는 동작 결과가 거의 같다.
+차이는 "누가 YAML을 준비하고 관리하느냐"다.
+
+### **1) kubectl URL apply**
+{: .mt-4 .mb-2}
+예:
+```bash
+kubectl apply -f https://example.com/ingress-nginx.yaml
+```
+
+의미:
+- 원격에 있는 manifest(YAML)를 그대로 받아 적용
+- 빠르게 테스트/PoC 할 때 편리
+
+### **2) 직접 YAML 작성 후 apply**
+{: .mt-4 .mb-2}
+예:
+```bash
+kubectl apply -f ingress-controller.yaml
+```
+
+의미:
+- YAML을 직접 소유하고 수정/버전관리 가능
+- GitOps, 운영 표준화에 유리
+
+### **3) Helm 설치**
+{: .mt-4 .mb-2}
+예:
+```bash
+helm install ingress-nginx ingress-nginx/ingress-nginx
+```
+
+의미:
+- 템플릿 기반 패키지 관리
+- values 파일로 환경별 설정 주입이 쉬움
+- 업그레이드/롤백 운영이 편리
+
+## **방식별 비교**
+{: .mt-5 .mb-2}
+
+| 방식 | 편의성 | 버전 고정 | 커스터마이징 | 운영 적합성 |
+|---|---|---|---|---|
+| URL apply | 높음 | 낮음 | 낮음 | 테스트용 |
+| 직접 YAML | 보통 | 높음 | 높음 | 높음 |
+| Helm | 높음 | 높음 | 높음 | 매우 높음 |
+
+핵심:
+- 동작 원리는 동일(Deployment/Service/RBAC 등 리소스 생성)
+- 운영 환경은 YAML 또는 Helm으로 Git 버전 관리하는 것이 일반적이다.
+
 요청 처리 예시:
 1. 사용자가 `https://api.example.com` 호출
 2. LoadBalancer 공인 IP로 유입
