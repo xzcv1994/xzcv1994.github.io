@@ -104,6 +104,21 @@ Ingress를 사용하면 하나의 진입점으로 여러 서비스를 도메인/
 - **Ingress Controller**: 그 규칙을 실제 트래픽 처리로 실행하는 컨트롤러
 
 즉, Ingress만 만들어서는 동작하지 않고 Ingress Controller가 반드시 필요하다.
+한 줄로 보면 "Ingress는 설계도, Ingress Controller는 실행 엔진"이다.
+
+## **NGINX Ingress Controller는 무엇인가**
+{: .mt-5 .mb-2}
+맞다. NGINX Ingress Controller는 Ingress Controller의 대표 구현체이며, 실제로는 Pod(보통 Deployment)로 실행된다.
+
+즉:
+- Ingress 리소스 = 규칙 정의
+- NGINX Ingress Controller Pod = 규칙을 읽고 실제 요청을 처리하는 주체
+
+자주 쓰는 구현체 예시:
+- NGINX Ingress Controller
+- HAProxy Ingress
+- Traefik
+- Azure Application Gateway Ingress Controller
 
 예시 규칙:
 ```yaml
@@ -139,6 +154,13 @@ AKS에서는 보통 Ingress Controller(NGINX 등)를 설치하고, 그 Controlle
 - Service -> Pod
 
 즉, 외부 트래픽 관문은 실질적으로 Ingress Controller다.
+
+요청 처리 예시:
+1. 사용자가 `https://api.example.com` 호출
+2. LoadBalancer 공인 IP로 유입
+3. NGINX Ingress Controller Pod가 요청 수신
+4. Ingress 규칙(`host/path`) 매칭
+5. 대상 Service로 프록시 후 Pod에 전달
 
 ## **Service 타입과 외부 접근**
 {: .mt-5 .mb-2}
