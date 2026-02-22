@@ -87,6 +87,59 @@ flowchart LR
     S --> P["Pod"]
 ```
 
+## **Ingress가 왜 중요한가**
+{: .mt-5 .mb-2}
+`ClusterIP`는 외부 접근이 불가능하고, 서비스마다 `LoadBalancer`를 붙이면 비용/운영 복잡도가 커진다.
+Ingress를 사용하면 하나의 진입점으로 여러 서비스를 도메인/경로 기준으로 라우팅할 수 있다.
+
+주요 이점:
+- 도메인 기반 라우팅 (`api.example.com`, `admin.example.com`)
+- 경로 기반 라우팅 (`/auth`, `/payment`)
+- TLS(HTTPS) 인증서 중앙 관리
+- 여러 서비스에 대한 외부 IP 통합
+
+## **Ingress와 Ingress Controller 차이**
+{: .mt-5 .mb-2}
+- **Ingress**: HTTP 라우팅 규칙을 정의하는 Kubernetes 리소스(설정 객체)
+- **Ingress Controller**: 그 규칙을 실제 트래픽 처리로 실행하는 컨트롤러
+
+즉, Ingress만 만들어서는 동작하지 않고 Ingress Controller가 반드시 필요하다.
+
+예시 규칙:
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-ingress
+spec:
+  rules:
+    - host: api.example.com
+      http:
+        paths:
+          - path: /auth
+            pathType: Prefix
+            backend:
+              service:
+                name: auth-service
+                port:
+                  number: 80
+```
+
+의미:
+`api.example.com/auth` 요청을 `auth-service:80`으로 전달한다.
+
+## **AKS에서의 실무 구조**
+{: .mt-5 .mb-2}
+AKS에서는 보통 Ingress Controller(NGINX 등)를 설치하고, 그 Controller Service를 `LoadBalancer` 타입으로 노출한다.
+
+흐름:
+- 외부 사용자 -> LoadBalancer 공인 IP
+- LoadBalancer -> Ingress Controller Pod
+- Ingress 규칙 매칭 -> 내부 Service(ClusterIP)
+- Service -> Pod
+
+즉, 외부 트래픽 관문은 실질적으로 Ingress Controller다.
+
 ## **Service 타입과 외부 접근**
 {: .mt-5 .mb-2}
 
@@ -95,7 +148,9 @@ flowchart LR
 | ClusterIP | 불가 | 클러스터 내부 전용 |
 | NodePort | 가능 | `NodeIP:Port`로 접근 |
 | LoadBalancer | 가능 | 클라우드 LB IP로 접근 |
-| Ingress | 가능 | 도메인/경로 기반 라우팅 |
+
+참고:
+- Ingress는 Service 타입이 아니라, HTTP/HTTPS 라우팅 리소스다.
 
 ## **정리**
 {: .mt-5 .mb-2}
@@ -103,3 +158,4 @@ flowchart LR
 - 외부 호출: Ingress/LoadBalancer 사용
 - CoreDNS는 이름 해석, kube-proxy는 트래픽 전달, metrics-server는 리소스 지표 수집을 담당
 - ClusterIP는 외부 공개용 IP가 아니다
+- Ingress는 규칙, Ingress Controller는 실행 주체다.
