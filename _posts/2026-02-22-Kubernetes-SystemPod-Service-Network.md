@@ -1,7 +1,7 @@
 ---
 title: Kubernetes System Pod와 Service 통신 구조
 author: seungbin
-date: 2026-02-22 11:55:00 +0800
+date: 2026-02-21 10:55:00 +0800
 categories: [DEVOPS, Kubernetes]
 tags: [kubernetes, service, coredns, kube-proxy, networking]
 pin: true

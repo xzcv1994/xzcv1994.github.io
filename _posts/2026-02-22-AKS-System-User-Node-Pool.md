@@ -1,7 +1,7 @@
 ---
 title: AKS의 agentpool, userpool 개념 정리
 author: seungbin
-date: 2026-02-22 11:40:00 +0800
+date: 2026-02-21 10:40:00 +0800
 categories: [DEVOPS, Kubernetes]
 tags: [aks, kubernetes, nodepool, azure]
 pin: true
