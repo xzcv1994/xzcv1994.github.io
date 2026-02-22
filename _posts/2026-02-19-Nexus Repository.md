@@ -14,6 +14,25 @@ Nexus Repository는 Maven 생태계에서 널리 사용되는 무료 Repository 
 {: .mt-5 .mb-2}
 Nexus Repository는 외부 오픈소스 아티팩트와 내부 빌드 산출물을 한 곳에서 관리할 수 있도록 도와주는 저장소 관리 솔루션이다.
 
+## **아티팩트(Artifact)란?**
+{: .mt-5 .mb-2}
+아티팩트는 빌드 결과로 만들어지는 배포 가능한 산출물이다.
+
+대표 예시:
+- Java: `jar`, `war`
+- JavaScript: 번들 파일(`.js`, `.map`)
+- Docker: 컨테이너 이미지
+
+Maven 기준으로 아티팩트는 보통 아래 좌표로 식별한다.
+- `groupId`
+- `artifactId`
+- `version`
+
+예:
+- `com.example:payment-service:1.0.3`
+
+즉, Nexus에서 말하는 아티팩트 관리는 "빌드 결과물을 버전 단위로 저장/조회/배포하는 것"이라고 이해하면 된다.
+
 ## **핵심 특징**
 {: .mt-5 .mb-2}
 - Maven 환경에서 널리 사용되는 Repository Manager다.
