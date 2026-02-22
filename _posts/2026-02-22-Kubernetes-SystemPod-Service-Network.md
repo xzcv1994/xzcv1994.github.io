@@ -155,6 +155,34 @@ AKS에서는 보통 Ingress Controller(NGINX 등)를 설치하고, 그 Controlle
 
 즉, 외부 트래픽 관문은 실질적으로 Ingress Controller다.
 
+## **"Controller Service를 LoadBalancer로 노출"의 정확한 의미**
+{: .mt-5 .mb-2}
+헷갈리기 쉬운 포인트는 `Ingress`와 `Ingress Controller`가 다르다는 점이다.
+
+- `Ingress`: 라우팅 규칙 리소스(설정)
+- `Ingress Controller`: 실제 HTTP 트래픽을 받는 Pod
+
+문제는 Ingress Controller도 결국 Pod라서 외부에서 직접 접근할 수 없다는 점이다.
+그래서 Ingress Controller 앞에 Service를 두고, 그 Service 타입을 `LoadBalancer`로 만든다.
+
+그 결과 AKS(Azure)는 자동으로 외부 진입점을 만든다.
+- Public IP 할당
+- Azure Load Balancer 생성
+- 해당 Load Balancer가 Ingress Controller Service로 트래픽 전달
+
+```mermaid
+flowchart LR
+    U["External Client"] --> P["Azure Public IP"]
+    P --> ALB["Azure Load Balancer"]
+    ALB --> S["Service (type=LoadBalancer)"]
+    S --> IC["NGINX Ingress Controller Pod"]
+    IC --> CS["ClusterIP Service"]
+    CS --> APP["Application Pod"]
+```
+
+즉, "Controller Service를 LoadBalancer로 노출한다"는 말은
+"Ingress Controller를 외부에서 접근 가능한 관문으로 만든다"는 뜻이다.
+
 요청 처리 예시:
 1. 사용자가 `https://api.example.com` 호출
 2. LoadBalancer 공인 IP로 유입
