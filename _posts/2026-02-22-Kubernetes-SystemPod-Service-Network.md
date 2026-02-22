@@ -190,17 +190,65 @@ flowchart LR
 4. Ingress 규칙(`host/path`) 매칭
 5. 대상 Service로 프록시 후 Pod에 전달
 
-## **Service 타입과 외부 접근**
+## **Service란?**
+{: .mt-5 .mb-2}
+Service는 여러 Pod를 하나의 논리적 네트워크 엔드포인트로 묶어주는 리소스다.
+Pod IP는 바뀔 수 있지만 Service는 안정적인 접근 지점(이름/포트)을 제공한다.
+
+기본 동작:
+- Service 생성 시(기본) ClusterIP 할당
+- kube-proxy가 라우팅 규칙(iptables/IPVS) 구성
+- CoreDNS가 `service-name` 기반 이름 해석 제공
+
+## **Service 타입별 특징**
 {: .mt-5 .mb-2}
 
-| 타입 | 외부 접근 | 설명 |
+### **1) ClusterIP (기본값)**
+{: .mt-4 .mb-2}
+- 클러스터 내부 전용
+- 내부 Pod에서 `http://service-name`으로 접근
+- 외부에서 ClusterIP 직접 호출 불가
+
+### **2) NodePort**
+{: .mt-4 .mb-2}
+- 각 노드에 포트를 열어 외부 접근 허용
+- 접근 방식: `NodeIP:NodePort`
+- 외부에서 ClusterIP 직접 호출은 여전히 불가
+
+### **3) LoadBalancer**
+{: .mt-4 .mb-2}
+- 클라우드에서 외부 LB/Public IP를 자동 생성(AKS 등)
+- 접근 방식: `PublicIP:Port`
+- 외부에서 접근 가능한 IP는 ClusterIP가 아니라 클라우드 LB 공인 IP
+
+### **4) ExternalName**
+{: .mt-4 .mb-2}
+- 외부 도메인으로 DNS CNAME 매핑
+- 프록시가 아니라 DNS 별칭 제공
+
+### **5) Headless Service (`clusterIP: None`)**
+{: .mt-4 .mb-2}
+- ClusterIP를 만들지 않음
+- DNS가 개별 Pod IP를 반환
+- StatefulSet 같은 개별 인스턴스 직접 접근 패턴에 사용
+
+## **외부에서 Service IP 직접 호출 가능 여부**
+{: .mt-5 .mb-2}
+
+| 타입 | 외부에서 Service IP 직접 호출 | 비고 |
 |---|---|---|
-| ClusterIP | 불가 | 클러스터 내부 전용 |
-| NodePort | 가능 | `NodeIP:Port`로 접근 |
-| LoadBalancer | 가능 | 클라우드 LB IP로 접근 |
+| ClusterIP | 불가 | 내부 전용 |
+| NodePort | 불가 | `NodeIP:NodePort`로 접근 |
+| LoadBalancer | 가능(공인 IP) | ClusterIP가 아닌 외부 LB IP |
+| Headless | 불가 | ClusterIP 없음 |
+| ExternalName | 대상 도메인에 의존 | DNS 별칭 |
+
+핵심:
+- ClusterIP는 외부에서 직접 접근할 수 없다.
+- 외부 접근은 NodePort, LoadBalancer, Ingress(라우팅 리소스)를 통해서만 가능하다.
 
 참고:
-- Ingress는 Service 타입이 아니라, HTTP/HTTPS 라우팅 리소스다.
+- Ingress는 Service 타입이 아니라 HTTP/HTTPS 라우팅 리소스다.
 
 ## **정리**
 {: .mt-5 .mb-2}
