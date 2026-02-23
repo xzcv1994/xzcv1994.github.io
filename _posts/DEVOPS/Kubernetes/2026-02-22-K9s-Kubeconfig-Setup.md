@@ -1,7 +1,7 @@
 ---
 title: k9s 접속을 위한 kubeconfig 설정 정리
 author: seungbin
-date: 2026-02-22 12:10:00 +0800
+date: 2026-02-22 10:55:00 +0800
 categories: [DEVOPS, Kubernetes]
 tags: [k9s, kubeconfig, aks, kubectl]
 pin: true

@@ -33,6 +33,9 @@ API Key, Token, 인증서 등 민감정보가 커밋되는지 탐지한다.
 {: .mt-4 .mb-2}
 조직/리포지토리 단위로 보안 상태를 한 눈에 확인하고 우선순위를 관리할 수 있다.
 
+seungbin-yang_ktdev:/seungbin-yang_ktdev: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@github.com/PG105201-K-CCaaS/CTaaS-APILayer-DeviceModule.git
+
+
 ---
 
 ## **🔷 CodeQL의 Default setup vs Advanced setup**
