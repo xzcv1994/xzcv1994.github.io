@@ -25,6 +25,90 @@ ReplicaSet
 Pod
 ```
 
+## **YAML로 비교 (Pod vs ReplicaSet vs Deployment)**
+{: .mt-5 .mb-2}
+
+### **1) Pod (단독 실행)**
+{: .mt-4 .mb-2}
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample-pod
+  labels:
+    app: sample
+spec:
+  containers:
+    - name: app
+      image: nginx:1.27
+      ports:
+        - containerPort: 80
+```
+
+### **2) ReplicaSet (개수 유지)**
+{: .mt-4 .mb-2}
+```yaml
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: sample-rs
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sample
+  template:
+    metadata:
+      labels:
+        app: sample
+    spec:
+      containers:
+        - name: app
+          image: nginx:1.27
+          ports:
+            - containerPort: 80
+```
+
+### **3) Deployment (배포 전략 + 롤백)**
+{: .mt-4 .mb-2}
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sample
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: sample
+    spec:
+      containers:
+        - name: app
+          image: nginx:1.27
+          ports:
+            - containerPort: 80
+```
+
+### **차이 포인트 요약**
+{: .mt-4 .mb-2}
+| 항목 | Pod | ReplicaSet | Deployment |
+|---|---|---|---|
+| 직접 실행 단위 | 예 | 내부적으로 Pod 생성 | 내부적으로 Pod/RS 생성 |
+| replicas 선언 | 없음 | 있음 | 있음 |
+| selector + template | 없음 | 있음 | 있음 |
+| 자동 복구 | 약함 | 가능 | 가능 |
+| 롤링 업데이트 | 불가 | 불가 | 가능 |
+| 롤백 | 불가 | 불가 | 가능 |
+
 ## **ReplicaSet의 역할**
 {: .mt-5 .mb-2}
 - 지정한 라벨의 Pod 개수를 `replicas` 값으로 유지
