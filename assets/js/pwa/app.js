@@ -8,7 +8,7 @@ const $btnRefresh = $('#notification .toast-body>button');
 
 if ('serviceWorker' in navigator) {
     /* Registering Service Worker */
-    navigator.serviceWorker.register('{{ "/sw.js" | relative_url }}')
+    navigator.serviceWorker.register('{{ "/sw.js" | relative_url }}', { updateViaCache: 'none' })
         .then(registration => {
 
             /* in case the user ignores the notification */
@@ -17,7 +17,9 @@ if ('serviceWorker' in navigator) {
             }
 
             registration.addEventListener('updatefound', () => {
-                registration.installing.addEventListener('statechange', () => {
+                const installing = registration.installing;
+                if (!installing) return;
+                installing.addEventListener('statechange', () => {
                     if (registration.waiting) {
                         if (navigator.serviceWorker.controller) {
                             $notification.toast('show');
