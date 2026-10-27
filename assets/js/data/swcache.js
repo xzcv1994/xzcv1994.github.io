@@ -5,7 +5,7 @@ layout: compress
 
 const resource = [
   /* --- CSS --- */
-  '{{ "/assets/css/:THEME.css" | replace: ':THEME', site.theme | relative_url }}',
+  '{{ "/assets/css/:THEME.css" | replace: ':THEME', site.theme | relative_url }}?v={{ site.time | date: '%s' }}',
 
   /* --- PWA --- */
   '{{ "/app.js" | relative_url }}',
