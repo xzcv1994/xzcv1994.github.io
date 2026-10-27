@@ -159,3 +159,89 @@ html[data-mode='dark'] { @include rengoku-dark; }
 @media (prefers-color-scheme: dark) {
   html:not([data-mode='light']) { @include rengoku-dark; }
 }
+
+/* Amber home: wide reading cards and low-contrast haori motifs. */
+body.amber-home {
+  #main-wrapper {
+    position: relative;
+    isolation: isolate;
+    background: radial-gradient(ellipse at 100% 0, rgba(166, 105, 49, 0.12), transparent 45%), var(--main-bg);
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      pointer-events: none;
+      background: url('../img/rengoku-haori.svg') no-repeat center / contain;
+    }
+    &::before {
+      width: 240px;
+      height: 440px;
+      right: 0;
+      top: 100px;
+      opacity: 0.13;
+    }
+    &::after {
+      width: 300px;
+      height: 480px;
+      left: 0;
+      bottom: 30px;
+      opacity: 0.16;
+    }
+  }
+
+  #panel-wrapper { display: none; }
+  main[aria-label='Main Content'],
+  #tail-wrapper { width: 100%; }
+
+  #post-list {
+    > .card {
+      border: 1px solid #d8c2a9;
+      border-radius: 12px;
+      box-shadow: inset 3px 0 #b17e48;
+      background: linear-gradient(105deg, #fff7ec, #fffdf9 75%);
+      overflow: hidden;
+      margin-bottom: 22px;
+
+      &:first-child {
+        border-color: #bc8e56;
+        box-shadow: inset 3px 0 #dea155;
+      }
+    }
+    .card-body {
+      padding: 26px 28px;
+      .card-title { font-size: 1.45rem; line-height: 1.5; }
+      .post-meta {
+        border-top: 1px solid rgba(145, 100, 56, 0.22);
+        padding-top: 14px;
+      }
+    }
+  }
+
+  @media (max-width: 575px) {
+    #main-wrapper::before { width: 120px; opacity: 0.1; }
+    #main-wrapper::after { width: 180px; opacity: 0.13; }
+    #post-list .card-body {
+      padding: 20px;
+      .card-title { font-size: 1.2rem; }
+    }
+  }
+}
+
+@mixin amber-home-dark {
+  body.amber-home #post-list > .card {
+    border-color: #4b3829;
+    background: linear-gradient(105deg, rgba(43, 34, 27, 0.96), rgba(28, 26, 26, 0.94) 75%);
+    box-shadow: inset 3px 0 #825332;
+    &:first-child {
+      border-color: #79512e;
+      box-shadow: inset 3px 0 #dea155;
+    }
+    .post-meta { border-color: #3b2d23; }
+  }
+}
+html[data-mode='dark'] { @include amber-home-dark; }
+@media (prefers-color-scheme: dark) {
+  html:not([data-mode='light']) { @include amber-home-dark; }
+}
