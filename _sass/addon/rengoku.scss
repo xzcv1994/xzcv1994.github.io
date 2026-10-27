@@ -162,10 +162,21 @@ html[data-mode='dark'] { @include rengoku-dark; }
 
 /* Amber home: wide reading cards and low-contrast haori motifs. */
 body.amber-home {
+  --amber-red-glow: rgba(128, 40, 20, 0.16);
+  --amber-low-glow: rgba(105, 35, 21, 0.09);
+
   #main-wrapper {
     position: relative;
     isolation: isolate;
-    background: radial-gradient(ellipse at 100% 0, rgba(166, 105, 49, 0.12), transparent 45%), var(--main-bg);
+    background-color: var(--main-bg);
+    background-image:
+      url('../img/rengoku-embers.svg'),
+      url('../img/rengoku-embers.svg'),
+      radial-gradient(ellipse at 100% 12%, var(--amber-red-glow), transparent 52%),
+      radial-gradient(ellipse at 0 70%, var(--amber-low-glow), transparent 48%);
+    background-size: 246px 860px, 210px 980px, 100% 100%, 100% 100%;
+    background-position: right 0 top 40px, left -25px top 330px, center, center;
+    background-repeat: repeat-y, repeat-y, no-repeat, no-repeat;
 
     &::before,
     &::after {
@@ -180,14 +191,14 @@ body.amber-home {
       height: 440px;
       right: 0;
       top: 100px;
-      opacity: 0.13;
+      opacity: 0.17;
     }
     &::after {
       width: 300px;
       height: 480px;
       left: 0;
       bottom: 30px;
-      opacity: 0.16;
+      opacity: 0.19;
     }
   }
 
@@ -230,6 +241,10 @@ body.amber-home {
 }
 
 @mixin amber-home-dark {
+  body.amber-home {
+    --amber-red-glow: rgba(128, 40, 20, 0.38);
+    --amber-low-glow: rgba(105, 35, 21, 0.22);
+  }
   body.amber-home #post-list > .card {
     border-color: #4b3829;
     background: linear-gradient(105deg, rgba(43, 34, 27, 0.96), rgba(28, 26, 26, 0.94) 75%);
