@@ -198,7 +198,7 @@ jekyll-archives:
     category: /categories/:name/
 
 main:
-  name: 양승빈
+  name: 염주 양승빈
 
 #plugins:
 #  - jekyll-sitemap

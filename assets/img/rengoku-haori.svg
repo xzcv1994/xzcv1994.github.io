@@ -1,0 +1,17 @@
+<svg class="haori-pattern" viewBox="0 0 280 380" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="haori-fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="white"/><stop offset="0.65" stop-color="white"/><stop offset="1" stop-color="black"/></linearGradient>
+<mask id="haori-mask"><rect width="280" height="380" fill="url(#haori-fade)"/></mask>
+<g id="haori-tongue">
+<path fill="#bd8544" d="M-8 155 C8 142 25 132 20 111 C31 121 30 132 26 141 C58 122 45 98 38 81 C27 54 42 23 59 0 C42 39 54 56 65 76 C82 108 62 126 55 141 C72 135 82 118 80 100 C99 128 74 152 87 163 C52 169 17 163 -8 155Z"/>
+<path fill="#853826" d="M-8 158 C18 151 40 141 42 121 C47 104 41 89 39 76 C49 103 63 109 54 132 C48 144 44 148 41 153 C62 154 75 144 80 131 C75 148 82 156 88 165 C53 170 16 165 -8 158Z"/>
+</g>
+</defs>
+<g mask="url(#haori-mask)">
+<path fill="#853826" d="M0 145 C90 192 173 290 280 368 L280 380 C171 325 70 221 0 181Z"/>
+<use href="#haori-tongue" transform="translate(-26 0) rotate(-22 45 150)"/>
+<use href="#haori-tongue" transform="translate(68 88) rotate(-22 45 150) scale(.82 1.06)"/>
+<use href="#haori-tongue" transform="translate(157 180) rotate(-22 45 150) scale(.72 .95)"/>
+
+</g>
+</svg>

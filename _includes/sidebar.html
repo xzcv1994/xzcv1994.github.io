@@ -2,15 +2,17 @@
 
 <aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
   <header class="profile-wrapper">
-    <a href="{{ '/' | relative_url }}" id="avatar" class="rounded-circle">
+    <a href="{{ '/' | relative_url }}" id="avatar" class="rengoku-banner">
       {%- if site.avatar != empty and site.avatar -%}
         {%- capture avatar_url -%}
           {% include img-url.html src=site.avatar %}
         {%- endcapture -%}
-        <img src="{{- avatar_url -}}" width="112" height="112" alt="avatar" onerror="this.style.display='none'">
+        <img src="{{- avatar_url -}}" width="112" height="112" alt="렌고쿠 쿄쥬로" onerror="this.style.display='none'">
       {%- endif -%}
     </a>
 
+    <span class="rengoku-kanji" aria-hidden="true">炎柱</span>
+    <p class="rengoku-motto">SET YOUR HEART ABLAZE</p>
     <h1 class="site-title">
       <a href="{{ '/' | relative_url }}">{{ site.main.name }}</a>
     </h1>
@@ -20,6 +22,8 @@
   <!-- .profile-wrapper -->
 
   <nav class="flex-column flex-grow-1 w-100 ps-0">
+    <div class="rengoku-haori" aria-hidden="true"></div>
+    <div class="rengoku-embers" aria-hidden="true"></div>
     <ul class="nav">
       <!-- home -->
       <li class="nav-item{% if page.layout == 'home' %}{{ " active" }}{% endif %}">

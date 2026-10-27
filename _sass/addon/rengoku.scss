@@ -1,0 +1,161 @@
+/* Flame Hashira: fixed artwork, readable navigation, and quiet ember accents. */
+#sidebar {
+  background: radial-gradient(ellipse at 100% 32%, #4b1a11, transparent 53%), #0c0c0e;
+  border-right: 1px solid #35231b;
+  --sidebar-muted-color: #bcafa7;
+  --sidebar-active-color: #ffe6af;
+  --sidebar-hover-bg: #442014;
+  --sidebar-btn-color: #bba38b;
+  --sidebar-btn-bg: transparent;
+
+  .profile-wrapper {
+    position: relative;
+    flex-shrink: 0;
+    margin: 0 0 1.5rem;
+    padding: 280px 25px 0;
+  }
+
+  #avatar {
+    position: absolute;
+    inset: 0 0 auto;
+    width: 100%;
+    height: 255px;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible;
+    transform: none;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 66% center;
+      filter: saturate(1.3) contrast(1.1);
+      clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+      &:hover { transform: none; }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0 0 auto;
+      height: 282px;
+      background: linear-gradient(155deg, #fff0a4 3%, #ffb62d 30%, #ed3f17 60%, #691509 90%);
+      clip-path: polygon(0 94%, 72% 69%, 64% 77%, 100% 60%, 87% 74%, 100% 70%, 100% 78%, 0 100%);
+      pointer-events: none;
+    }
+  }
+
+  .rengoku-kanji {
+    position: absolute;
+    top: 18px;
+    right: 15px;
+    writing-mode: vertical-rl;
+    font-family: serif;
+    font-size: 35px;
+    letter-spacing: 9px;
+    color: #fff1c0;
+    text-shadow: 2px 2px #881b0e, 0 0 12px #d85c19;
+    pointer-events: none;
+  }
+
+  .rengoku-motto {
+    color: #ffb84f;
+    font-size: 11px;
+    line-height: 1.9;
+    letter-spacing: 3px;
+    margin: 0 0 12px;
+  }
+
+  .site-title {
+    font-size: 1.65rem;
+    letter-spacing: -1px;
+    margin: 0 0 12px;
+    a { color: #fff2df; }
+  }
+  .site-subtitle { color: #b6a393; }
+
+  nav {
+    position: relative;
+    isolation: isolate;
+    min-height: 390px;
+    flex-shrink: 0;
+  }
+
+  .rengoku-haori,
+  .rengoku-embers {
+    position: absolute;
+    pointer-events: none;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+  .rengoku-haori {
+    top: 90px;
+    left: 0;
+    width: 100%;
+    height: 335px;
+    opacity: 0.231;
+    background-image: url('../img/rengoku-haori.svg');
+  }
+  .rengoku-embers {
+    inset: -395px 0 auto;
+    width: 100%;
+    height: 860px;
+    background-image: url('../img/rengoku-embers.svg');
+  }
+
+  ul { position: relative; margin-bottom: 0; }
+  ul li.nav-item {
+    padding: 0 20px;
+    opacity: 1;
+    a.nav-link {
+      min-height: 42px;
+      border-radius: 4px;
+      color: #bcafa7;
+      i { margin-right: 16px; }
+      span { font-size: 11px; letter-spacing: 1px; }
+    }
+    &.active .nav-link {
+      color: #ffe6af;
+      background: linear-gradient(100deg, #a73016, #441a10);
+      box-shadow: inset 3px 0 #ffc64e;
+    }
+  }
+
+  .sidebar-bottom {
+    position: relative;
+    flex-shrink: 0;
+    width: calc(100% - 40px) !important;
+    margin: 12px 20px 0;
+    padding: 20px 0;
+    border-top: 1px solid #582514;
+  }
+}
+
+@mixin rengoku-dark {
+  --main-bg: #141416;
+  --main-border-color: #342c27;
+  --heading-color: #eee2d7;
+  --text-color: #b8ada4;
+  --text-muted-color: #a99f97;
+  --link-color: #e7aa6b;
+  --link-underline-color: #79502d;
+  --topbar-bg: rgba(22, 21, 23, 0.95);
+  --card-bg: #1c1b1e;
+  --card-shadow: 0 0 0 1px #342c27;
+  --card-hovor-bg: #28201b;
+
+  #post-list .card {
+    background: linear-gradient(120deg, #211d1a, #1c1b1e 65%);
+    border-radius: 10px;
+  }
+  #post-list > .card:first-child { box-shadow: inset 3px 0 #db7a31, 0 0 0 1px #68402b; }
+  #panel-wrapper h2 { color: #d8c4af; }
+}
+
+html[data-mode='dark'] { @include rengoku-dark; }
+@media (prefers-color-scheme: dark) {
+  html:not([data-mode='light']) { @include rengoku-dark; }
+}
